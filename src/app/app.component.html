@@ -5,18 +5,17 @@
   <meta charset = "UTF-8">
 </head>
 <body>
-<h1> <b>BIENVENUE</b> </h1>
-<H2> sur votre site de streaming musical préférée</H2>
-<section>
-  <article>
-    <p> <b>Nom</b>  : <input type="text" ><br /> </p>
-    <button  (click)="changementDePage('p2')">Valider</button>
-  </article>
-</section>
+<div class="row">
+  <div class="col">
+    <h1> <b>BIENVENUE</b> </h1>
+  <H2> sur votre site de streaming musical préférée</H2>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <!-- c'est ici que tout se joue. tout ce qui est dans les routes se jouent ici -->
+    <router-outlet></router-outlet>
+  </div>
+</div>
 </body>
-<footer>
-  <p></p>
-</footer>
 </html>
-<router-outlet></router-outlet>
-

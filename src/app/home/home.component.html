@@ -1,0 +1,56 @@
+<h6 class="mt-3">Liste de mes playlists: {{playlists.length}}</h6>
+
+<div class="row">
+    <div class="col">
+        <div class="card mt-3" *ngFor="let item of playlists">
+            <div class="card-body">
+                <div class="row">
+                    <span>{{item.Intitule}}</span>
+                </div>
+                <div class="row">
+                    <span class="date-creation">Créé le: {{item.DateCreation | date: 'yyyy-MM-dd à hh:mm'}}</span>
+                </div>
+                <div class="row">
+                    <span class="nombre-chansons">({{item.Songs.length}}) Chanson(s)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3" *ngIf="!showAddSection">
+    <div class="col">
+        <button class="btn btn-primary" type="button" (click)="addPlaylist()">Ajouter un playlist</button>
+    </div>
+</div>
+<div class="row mt-3" *ngIf="showAddSection && !!selectedPlaylist">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Intitulé</label>
+                            <input type="text" class="form-control" placeholder="Intitulé" [(ngModel)]="selectedPlaylist.Intitule"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group">
+                        <label>Chansons ({{selectedPlaylist.Songs.length}})</label>
+                    </div>
+                    <div class="col add-song">
+                        <a href="#" (click)="addSong(selectedPlaylist)">Ajouter une chanson</a>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="flex">
+                            <button class="btn btn-success" type="button" (click)="savePlaylist()">Enregistrer</button>
+                            <button class="btn btn-primary ms-2" type="button" (click)="hidePlaylist()">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

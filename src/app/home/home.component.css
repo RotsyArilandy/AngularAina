@@ -1,0 +1,17 @@
+.card {
+    text-align: start;
+}
+.date-creation, .nombre-chansons
+{
+    font-size: 8pt;
+}
+
+.form-group label {
+    margin-left: 5px;
+}
+
+.col.add-song
+{
+    text-align: end;
+    font-size: 10pt;
+}
