@@ -1,7 +1,7 @@
 .card {
     text-align: start;
 }
-.date-creation, .nombre-chansons
+.date-creation, .nombre-chansons, .artist
 {
     font-size: 8pt;
 }
@@ -14,4 +14,23 @@
 {
     text-align: end;
     font-size: 10pt;
+}
+
+a {
+    color: blue !important;
+}
+a:hover {
+    color: blue !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.songs {
+    border-bottom: 1px solid #ccc;
+}
+
+.actions 
+{
+    display: flex;
+    font-size: 9pt;
 }

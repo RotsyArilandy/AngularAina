@@ -2,6 +2,22 @@
 
 <div class="row">
     <div class="col">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Recherche par intitulé" [ngModel]="intituleSearch" (ngModelChange)="search($event, undefined)"/>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <input type="text" placeholder="Recherche par date création" class="form-control" bsDaterangepicker [ngModel]="rangeDate" (ngModelChange)="search(undefined, $event)">
+        </div>
+    </div>
+    <div class="col">
+        <button class="btn btn-primary" type="button" (click)="reinitCriteres()">Effacer critères</button>
+    </div>
+</div>
+
+<div class="row" *ngIf="!_isForEdit">
+    <div class="col">
         <div class="card mt-3" *ngFor="let item of playlists">
             <div class="card-body">
                 <div class="row">
@@ -11,7 +27,21 @@
                     <span class="date-creation">Créé le: {{item.DateCreation | date: 'yyyy-MM-dd à hh:mm'}}</span>
                 </div>
                 <div class="row">
+                    <span class="date-creation">Créé par: {{item.CreePar}}</span>
+                </div>
+                <div class="row">
                     <span class="nombre-chansons">({{item.Songs.length}}) Chanson(s)</span>
+                </div>
+                <div class="row">
+                    <span class="nombre-chansons">{{item.NombreClics}} Clic(s)</span>
+                </div>
+                <div class="row mt-2 actions">
+                    <div class="col-6">
+                        <a (click)="editPlaylist(item)">Détails/Modifier</a>
+                    </div>
+                    <div class="col-6">
+                        <a (click)="deletePlaylist(item)">Supprimer</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,14 +64,47 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Créé par</label>
+                            <input type="text" class="form-control" placeholder="Crée par" [(ngModel)]="selectedPlaylist.CreePar"/>
+                        </div>
+                    </div>
+                </div>
                 <div class="row mt-3">
                     <div class="form-group">
                         <label>Chansons ({{selectedPlaylist.Songs.length}})</label>
                     </div>
                     <div class="col add-song">
-                        <a href="#" (click)="addSong(selectedPlaylist)">Ajouter une chanson</a>
+                        <a (click)="addSong()">Ajouter une chanson</a>
+                        <div class="row mt-3" *ngIf="showSongsSection">
+                            <div class="col-4" *ngFor="let item of songs">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <input type="checkbox" [(ngModel)]="item.selected"/>
+                                    </div>
+                                    <div class="col-11">
+                                        <div class="row">
+                                            <h5>{{item.title}}</h5>
+                                        </div>
+                                        <div class="row">
+                                            <span class="artist">Artiste: {{item.artist}}</span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="artist">Année: {{item.year}}</span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="artist">Durée: {{item.duration}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <hr>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="row mt-3">
                     <div class="col">
                         <div class="flex">

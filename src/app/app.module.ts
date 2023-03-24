@@ -6,6 +6,10 @@ import { TestComponent } from './test/test.component';
 import {Routes, RouterModule} from '@angular/router'
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { AppService } from './app.service';
+import { HttpClientModule } from '@angular/common/http';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -24,9 +28,9 @@ const routes: Routes = [
     TestComponent,
     HomeComponent
   ],
-  imports: [BrowserModule, FormsModule ,RouterModule.forRoot(routes)],
+  imports: [BrowserModule, FormsModule, HttpClientModule,BrowserAnimationsModule, BsDatepickerModule.forRoot() ,RouterModule.forRoot(routes)],
   exports : [RouterModule],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 
